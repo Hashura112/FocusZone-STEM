@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusZone - Góc học tập</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="study.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+    <div class="logo">
+        <h1>FocusZone 🚀</h1>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-home"></i> <span class="nav-text">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a href="study.html" class="active">
+                    <i class="fas fa-laptop"></i> <span class="nav-text">Góc học tập</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-pie"></i> <span class="nav-text">Thống kê</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i> <span class="nav-text">Cài đặt</span>
+                </a>
+            </li>
+            <li><a href="#" class="btn-login">Đăng nhập</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <div class="container">
+        
+        <main class="main-content">
+            <div class="box-bg task-box">
+                <div class="box-header">
+                    <h2>🎯 Mục tiêu hôm nay</h2>
+                    <p>Tập trung cao độ - Hiệu quả tối đa</p>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="taskInput" placeholder="Nhập bài tập cần làm...">
+                    <button onclick="addTask()"><i class="fas fa-plus"></i> Thêm</button>
+                </div>
+                
+                <ul id="taskList">
+                    </ul>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="box-bg timer-box">
+                <h3>Pomodoro Timer</h3>
+                <div id="timer">25:00</div>
+                <div class="timer-controls">
+                    <button onclick="startTimer()" class="btn-control"><i class="fas fa-play"></i> Start</button>
+                    <button onclick="resetTimer()" class="btn-control"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+
+            <div class="box-bg music-box">
+                <h3><i class="fas fa-headphones"></i> Nhạc Chill</h3>
+                <audio controls>
+                    <source src="music.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <div class="box-bg tips-box">
+                <h3><i class="fas fa-lightbulb"></i> Mẹo học tập</h3>
+                <p>Uống một ngụm nước sau mỗi 25 phút để não bộ luôn tỉnh táo nhé!</p>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

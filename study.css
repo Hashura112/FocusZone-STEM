@@ -1,0 +1,396 @@
+/* =========================================
+   CẤU HÌNH CƠ BẢN
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #6C5DD3;
+    --text: #1F1C2E;
+    --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* 1. ẢNH NỀN BAO QUÁT TOÀN TRANG */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    
+    /* Ảnh nền to nhất - Bạn nhớ thay tên file main-bg.jpg nếu cần */
+    background: url('main-bg.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+/* =========================================
+   HEADER & MENU
+========================================= */
+.main-header {
+    background-color: #ffffff; /* Header màu trắng rõ ràng */
+    padding: 15px 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.logo h1 { font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+.navbar ul { display: flex; list-style: none; gap: 30px; }
+.navbar a { text-decoration: none; color: #8F95B2; font-weight: 500; transition: 0.3s; }
+.navbar a:hover, .navbar a.active { color: var(--primary); }
+.btn-login { background: var(--primary); color: var(--white) !important; padding: 8px 25px; border-radius: 20px; }
+
+/* =========================================
+   BỐ CỤC CHIA CỘT
+========================================= */
+.container {
+    width: 95%; max-width: 1200px;
+    margin: 30px auto; padding: 0 20px;
+    display: flex; gap: 30px;
+    flex: 1;
+}
+.main-content { flex: 2.5; } 
+.sidebar { flex: 1; display: flex; flex-direction: column; gap: 20px; } 
+
+/* =========================================
+   XỬ LÝ HỘP CÓ ẢNH NỀN (PHẦN QUAN TRỌNG NHẤT)
+========================================= */
+.box-bg {
+    position: relative; /* Làm mốc tọa độ */
+    border-radius: 20px;
+    padding: 30px;
+    overflow: hidden; /* Cắt ảnh thừa */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    
+    /* --- KHẮC PHỤC LỖI ĐÈ ẢNH --- */
+    background-color: transparent !important; /* Bắt buộc nền trong suốt để nhìn thấy ảnh dưới */
+    z-index: 1; /* Thiết lập thứ tự lớp */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Viền sáng nhẹ */
+}
+
+/* LỚP ẢNH NỀN (Nằm bên dưới) */
+.box-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* Thiết lập ảnh */
+    background-size: cover;
+    background-position: center;
+    
+    /* Hiệu ứng mờ và tối */
+    filter: blur(1.5px) brightness(0.75); 
+    transform: scale(1.1); /* Phóng to nhẹ để che mép mờ */
+    
+    /* --- ĐẨY XUỐNG DƯỚI CÙNG --- */
+    z-index: -1; 
+}
+
+/* --- CHỈ ĐỊNH ẢNH (QUAN TRỌNG: Check kỹ tên file) --- */
+/* Nếu ảnh trong máy không hiện, hãy thử thay url bằng link online để test */
+.task-box::before { background-image: url('task-bg.jpg'); }
+.timer-box::before { background-image: url('timer-bg.jpg'); }
+.music-box::before { background-image: url('music-bg.jpg'); }
+.tips-box::before { background-image: url('tips-bg.jpg'); }
+
+
+/* MỌI CHỮ VIẾT BÊN TRONG PHẢI NỔI LÊN TRÊN */
+.box-bg * {
+    position: relative;
+    z-index: 2; /* Cao hơn lớp ảnh (-1) */
+}
+
+/* =========================================
+   CHI TIẾT NỘI DUNG (MÀU CHỮ TRẮNG)
+========================================= */
+/* Màu chữ chung cho các box là Trắng */
+.box-bg h2, .box-bg h3, .box-bg p, .box-bg li, .box-bg i {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Bóng chữ để dễ đọc */
+}
+
+/* Input nhập liệu */
+.input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+#taskInput { 
+    flex: 1; padding: 15px; border: none; border-radius: 12px; outline: none;
+    background: rgba(255, 255, 255, 0.9); /* Nền trắng đục */
+    color: #333; /* Chữ khi nhập là màu đen */
+}
+.input-group button { background: var(--primary); color: #fff; border: none; padding: 0 25px; border-radius: 12px; cursor: pointer; font-weight: bold;}
+
+/* Danh sách việc */
+#taskList li {
+    background: rgba(255, 255, 255, 0.9); /* Nền trắng đục */
+    padding: 15px; margin-bottom: 10px; border-radius: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: #333; /* Chữ trong list màu đen */
+    text-shadow: none; /* Bỏ bóng chữ trong list */
+}
+/* Sửa lại màu icon thùng rác */
+#taskList li i { color: #ff4757; text-shadow: none; }
+.delete-btn { background: #ffe5e5; color: #ff4757; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+
+/* Đồng hồ to */
+#timer { font-size: 3.5rem; font-weight: bold; margin: 15px 0; color: #fff; }
+.btn-control { padding: 10px 20px; border: 1px solid #fff; background: rgba(0,0,0,0.2); color: #fff; border-radius: 20px; margin: 0 5px; cursor: pointer; transition: 0.3s; }
+.btn-control:hover { background: var(--primary); border-color: var(--primary); }
+
+/* Footer */
+footer { text-align: center; padding: 20px; background: #fff; font-size: 0.9rem; color: #666; margin-top: auto; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container { flex-direction: column-reverse; }
+}
+
+
+
+/* =========================================
+   HIỆU ỨNG TƯƠNG TÁC (HOVER) - MỚI
+========================================= */
+
+/* 1. HIỆU ỨNG CHO CÁC HỘP LỚN (Mục tiêu, Đồng hồ, Nhạc, Mẹo) */
+.box-bg {
+    /* Chuyển động mượt mà trong 0.3 giây */
+    transition: all 0.3s ease; 
+    
+    /* Tạo sẵn viền dưới trong suốt (để khi hiện màu không bị nhảy khung) */
+    border-bottom: 5px solid transparent; 
+}
+
+.box-bg:hover {
+    /* Phóng to nhẹ (1.02 lần) và bay lên 5px */
+    transform: scale(1.02) translateY(-5px); 
+    
+    /* Hiện viền màu Vàng Đậm */
+    border-bottom-color: #FFD700; 
+    
+    /* Đổ bóng đậm hơn */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    
+    /* Đảm bảo hộp đang hover sẽ nổi lên trên cùng, không bị hộp khác che */
+    z-index: 10; 
+}
+
+/* 2. HIỆU ỨNG CHO TỪNG DÒNG CÔNG VIỆC (List Items) */
+#taskList li {
+    transition: 0.2s;
+    border-bottom: 3px solid transparent; /* Viền chờ sẵn */
+    cursor: pointer;
+}
+
+#taskList li:hover {
+    transform: translateX(10px); /* Dịch sang phải một chút */
+    background: #fff; /* Nền trắng sáng */
+    border-bottom-color: #FF754C; /* Viền cam (màu điểm nhấn) */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Icon thùng rác xoay khi di chuột vào dòng task */
+#taskList li:hover .delete-btn {
+    background-color: #ff4757;
+    color: white;
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* 3. HIỆU ỨNG CHO CÁC NÚT BẤM (Button) */
+button, .btn-control {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Hiệu ứng nảy (bouncy) */
+}
+
+button:hover, .btn-control:hover {
+    transform: scale(1.1); /* Phóng to nút */
+    cursor: pointer;
+}
+
+/* 4. HIỆU ỨNG MENU  */
+.navbar a {
+    position: relative;
+}
+/* Tạo đường kẻ vàng chạy ra khi di chuột vào Menu */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px; left: 0;
+    background-color: #FFD700; /* Màu vàng */
+    transition: width 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   XỬ LÝ TRÊN ĐIỆN THOẠI (ÉP CHIA 2 CỘT)
+========================================= */
+/* Khi màn hình nhỏ hơn 900px (Máy tính bảng, Điện thoại ngang) */
+@media (max-width: 768px) {
+    
+    /* 1. ÉP CONTAINER LUÔN NẰM NGANG (2 PHẦN) */
+    .container {
+        flex-direction: row !important; /* Quan trọng: Không cho xếp dọc */
+        gap: px; /* Giảm khoảng cách giữa 2 cột cho đỡ chật */
+        padding: 0 5px; /* Giảm lề 2 bên màn hình */
+        align-items: flex-start; /* Căn hàng đầu tiên thẳng nhau */
+    }
+
+    /* 2. CHIA TỶ LỆ CỘT TRÊN ĐIỆN THOẠI */
+    /* Trên máy tính là 70/30, nhưng trên đt nên là 60/40 để cột phải đủ chỗ chứa nút */
+    .main-content {
+        flex: 1.2; /* Chiếm khoảng 60% */
+        width: 55%; /* Đảm bảo không bị tràn */
+    }
+
+    .sidebar {
+        flex: 1; /* Chiếm khoảng 40% */
+        width: 45%;
+        gap: 8px; /* Khoảng cách giữa các hộp con gần lại */
+    }
+
+    /* 3. THU NHỎ NỘI DUNG ĐỂ VỪA KHUNG BÉ */
+    .box-bg {
+        padding: 10px; /* Giảm độ dày đệm trong hộp */
+    }
+
+    .box-header h2 {
+        font-size: 1.1rem; /* Thu nhỏ tiêu đề */
+        margin-bottom: ;
+    }
+
+    .box-header p { display: none; } /* Ẩn luôn dòng slogan cho gọn */
+
+    /* Input và nút Thêm bé lại */
+    #taskInput {
+        padding: 6px;
+        font-size: 0.75rem;
+    }
+    .input-group button {
+        padding: 0 8px;
+        font-size: 0.75rem;
+    }
+
+    /* Danh sách việc: Chữ nhỏ đi */
+    #taskList li {
+        padding: 8px;
+        font-size: 0.8rem;
+        flex-direction: column; /* Nếu tên việc dài quá thì nút xóa xuống dòng */
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .delete-btn {
+        width: 25px; height: 25px; font-size: 0.8rem;
+        align-self: flex-end; /* Đẩy nút xóa sang phải */
+    }
+
+    /* Đồng hồ: Thu nhỏ số và nút */
+    #timer {
+        font-size: 1.8rem; /* Số giờ bé lại */
+        margin: 2px 0;
+    }
+    
+    .timer-controls {
+        display: flex;
+        flex-direction: column; /* Xếp nút dọc để đỡ tốn chỗ ngang */
+        gap: 4px;
+    }
+    
+    .btn-control {
+        width: 100%; /* Nút giãn full chiều rộng cột */
+        font-size: 0.75rem;
+        padding: 4px;
+    }
+
+    /* --- MẸO XỬ LÝ THANH NHẠC (QUAN TRỌNG) --- */
+    .music-box audio {
+        /* Bắt nó rộng ra 180% so với cái hộp (để hiện đủ nút) */
+        width: 180%; 
+        
+        /* Sau đó thu nhỏ hình ảnh lại còn 55% để vừa cái hộp */
+        transform: scale(0.55); 
+        
+        /* Neo nó vào góc trái để không bị lệch */
+        transform-origin: left top; 
+        
+        /* Cắt bớt khoảng trắng thừa ra do thu nhỏ */
+        margin-bottom: -25px; 
+        margin-top: 5px;
+    }
+
+    /* Nhạc và Mẹo: Ẩn bớt icon hoặc thu nhỏ chữ */
+    .music-box h3, .tips-box h3 {
+        font-size: 0.85rem; margin-bottom: 0;
+    }
+    .tips-box p {
+        font-size: 0.75rem;
+    }
+}
+
+/* =========================================
+   RESPONSIVE MENU & BUTTON (TỰ ĐỘNG ĐIỀU CHỈNH)
+========================================= */
+@media (max-width: 900px) {
+    /* 1. XỬ LÝ MENU: Ẩn chữ, chỉ hiện Icon */
+    .nav-text {
+        display: none; /* Ẩn các thẻ span chứa chữ */
+    }
+
+    /* Tăng kích thước Icon lên một chút cho dễ bấm */
+    .navbar a i {
+        font-size: 1.3rem; 
+        margin: 0; /* Bỏ căn lề vì không còn chữ */
+    }
+
+    /* Thu hẹp khoảng cách giữa các mục menu */
+    .navbar ul {
+        gap: 20px; 
+    }
+
+    /* Căn giữa icon trong ô bấm */
+    .navbar a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px; /* Tạo vùng bấm hình vuông */
+        height: 40px;
+        border-radius: 50%; /* Bo tròn nút khi hover */
+        transition: 0.3s;
+    }
+
+    .navbar a:hover {
+        background-color: #f0f0f0; /* Hiệu ứng nền xám khi di chuột vào icon */
+    }
+
+
+    /* 2. XỬ LÝ NÚT ĐĂNG NHẬP: Tự co giãn */
+    .btn-login {
+        /* Giảm padding (khoảng cách viền) */
+        padding: 8px 15px !important; 
+        
+        /* Giảm cỡ chữ */
+        font-size: 0.85rem !important;
+        
+        /* Đảm bảo chữ không bị xuống dòng */
+        white-space: nowrap; 
+    }
+    /* Khi màn hình siêu nhỏ (Điện thoại dọc - dưới 480px) */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 10px 15px; /* Thu nhỏ lề Header */
+    }
+
+    .logo h1 {
+        font-size: 1.2rem; /* Thu nhỏ tên Logo */
+    }
+
+    .navbar ul {
+        gap: 10px; /* Các icon xích lại gần nhau hơn nữa */
+    }
+    
+    /* Nút đăng nhập bé xíu lại hoặc chỉ hiện icon */
+    .btn-login {
+        padding: 5px 10px !important;
+        font-size: 0.75rem !important;
+    }
+
+}

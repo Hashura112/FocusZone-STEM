@@ -1,0 +1,338 @@
+/* =========================================
+   CẤU HÌNH CHUNG (FONTS & COLORS)
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #6C5DD3;
+    --accent: #FF754C;
+    --bg: #F5F6FA;
+    --text: #1F1C2E;
+    --white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* =========================================
+   HEADER & MENU
+========================================= */
+.main-header {
+    background-color: var(--white);
+    padding: 15px 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky; top: 0; z-index: 100;
+}
+.logo h1 { font-size: 1.5rem; color: var(--primary); font-weight: 700; }
+.navbar ul { display: flex; list-style: none; gap: 30px; }
+.navbar a { text-decoration: none; color: #8F95B2; font-weight: 500; transition: 0.3s; }
+.navbar a:hover, .navbar a.active { color: var(--primary); }
+.btn-login { background: var(--primary); color: var(--white) !important; padding: 8px 25px; border-radius: 20px; }
+
+/* =========================================
+   HERO SECTION (ẢNH BÌA)
+========================================= */
+.hero-section {
+    position: relative; height: 550px;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; margin-bottom: 50px;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero-content p { font-size: 1.2rem; margin-bottom: 40px; color: #f0f0f0; }
+.btn-primary {
+    display: inline-block; padding: 15px 45px; background: var(--accent);
+    color: var(--white); text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s;
+}
+.btn-primary:hover { transform: translateY(-3px); }
+
+
+/* =========================================
+   NỘI DUNG (INFO & FEATURES) - ĐÃ SỬA LỖI ẢNH ĐÈ CHỮ
+========================================= */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 1. KHUNG BAO NGOÀI (ẢNH + CHỮ) */
+.info-section {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between;
+    gap: 50px; /* Khoảng cách an toàn giữa Ảnh và Chữ -> Chống dính vào nhau */
+    margin-bottom: 80px;
+    
+    /* QUAN TRỌNG: Nếu màn hình nhỏ quá thì tự rớt dòng chứ không ép chữ */
+    flex-wrap: wrap; 
+}
+
+/* Đảo ngược vị trí cho phần Giải pháp (Ảnh phải - Chữ trái) */
+.info-section.reverse {
+    flex-direction: row-reverse;
+}
+
+/* 2. CỘT CHỨA ẢNH (FRAME) */
+.info-img {
+    flex: 1; /* Chiếm 1 phần không gian */
+    min-width: 300px; /* Không bao giờ nhỏ hơn 300px */
+}
+
+/* --- ĐÂY LÀ PHẦN BẠN CẦN: KHUNG MẶC ĐỊNH CHO ẢNH --- */
+.info-img img {
+    width: 100%;       /* Rộng hết cỡ cột chứa nó */
+    height: 400px;     /* Chiều cao CỐ ĐỊNH (tạo khung) */
+    
+    /* Lệnh thần thánh giúp ảnh tự cắt cho vừa khung mà không bị méo */
+    object-fit: cover; 
+    
+    border-radius: 20px; /* Bo góc đẹp */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Bóng đổ nhẹ */
+    display: block;
+}
+
+/* 3. CỘT CHỨA CHỮ */
+.info-text {
+    flex: 1; /* Chiếm 1 phần không gian (bằng với ảnh) */
+    min-width: 300px; /* Đảm bảo chữ luôn có đủ chỗ để hiển thị */
+}
+
+.info-text h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.info-text ul {
+    list-style: none;
+}
+
+.info-text ul li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #555;
+    display: flex;
+    align-items: flex-start; /* Căn icon thẳng hàng với dòng đầu tiên */
+}
+
+.info-text ul li i {
+    color: #ff4757; /* Màu đỏ cho dấu X hoặc cảnh báo */
+    margin-right: 15px;
+    margin-top: 5px; /* Chỉnh icon xuống xíu cho cân */
+}
+
+/* Phần các bước 1-2-3 */
+.step-box {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+.step {
+    flex: 1;
+    text-align: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+}
+.step span {
+    display: block;
+    width: 35px; height: 35px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    line-height: 35px;
+    font-weight: bold;
+}
+.features-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+    margin-bottom: 80px; 
+}
+.feature-item { background: #fff; 
+    padding: 30px; 
+    border-radius: 20px; 
+    text-align: center; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+.feature-item i { 
+    font-size: 2.5rem; 
+    color: var(--primary); 
+    margin-bottom: 15px; 
+}
+
+footer { 
+    text-align: center; 
+    padding: 25px; 
+    background: #fff; 
+    border-top: 1px solid #eee; 
+    margin-top: 50px; 
+    color: #888; 
+}
+
+
+
+/* =========================================
+   HIỆU ỨNG HOVER (TƯƠNG TÁC CHUỘT) - MỚI
+========================================= */
+
+/* 1. HIỆU ỨNG CHO CÁC KHỐI TÍNH NĂNG (3 Cột dưới cùng) */
+.feature-item {
+    transition: all 0.3s ease; /* Tạo độ mượt khi thay đổi */
+    
+    /* Mẹo: Đặt sẵn viền trong suốt để khi hover không bị nhảy hình */
+    border-bottom: 4px solid transparent; 
+}
+
+.feature-item:hover {
+    /* Phóng to lên 1.05 lần (5%) */
+    transform: scale(1.05) translateY(-10px); 
+    
+    /* Hiện viền màu Vàng Đậm dưới chân */
+    border-bottom-color: #FBC02D; 
+    
+    /* Đổ bóng đậm hơn để tạo cảm giác nổi lên */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Hiệu ứng riêng cho Icon bên trong khối tính năng */
+.feature-item:hover i {
+    transform: scale(1.2) rotate(10deg); /* Icon phóng to và xoay nhẹ */
+    color: #FF754C; /* Đổi màu icon sang cam */
+    transition: 0.3s;
+}
+
+/* 2. HIỆU ỨNG CHO CÁC HỘP BƯỚC (1-2-3) */
+.step {
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent; /* Viền chờ sẵn */
+}
+
+.step:hover {
+    transform: scale(1.1); /* Phóng to to hơn xíu */
+    background-color: #FFFDE7; /* Đổi nền sang màu vàng nhạt cho nổi */
+    border-bottom-color: #FFD700; /* Viền vàng */
+    cursor: pointer;
+}
+
+/* 3. HIỆU ỨNG CHO ẢNH MINH HỌA (Problem & Pomodoro) */
+.info-img img {
+    transition: transform 0.5s ease; /* Chuyển động chậm rãi hơn (0.5s) */
+}
+
+.info-img img:hover {
+    transform: scale(1.03); /* Ảnh chỉ nên phóng to nhẹ thôi cho tinh tế */
+    box-shadow: 0 20px 40px rgba(108, 93, 211, 0.2); /* Bóng màu tím nhạt */
+}
+
+/* 4. HIỆU ỨNG CHO CÁC LIÊN KẾT MENU (Header) */
+.navbar a {
+    position: relative; /* Để căn chỉnh đường kẻ */
+}
+
+/* Tạo đường kẻ vàng chạy ra khi di chuột vào Menu */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: #FBC02D; /* Màu vàng */
+    transition: width 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%; /* Kéo dài đường kẻ từ 0% lên 100% */
+}
+
+
+/* =========================================
+   RESPONSIVE MENU & BUTTON (TỰ ĐỘNG ĐIỀU CHỈNH)
+========================================= */
+
+/* Khi màn hình nhỏ hơn 900px (Máy tính bảng, Điện thoại ngang) */
+@media (max-width: 900px) {
+
+    /* 1. XỬ LÝ MENU: Ẩn chữ, chỉ hiện Icon */
+    .nav-text {
+        display: none; /* Ẩn các thẻ span chứa chữ */
+    }
+
+    /* Tăng kích thước Icon lên một chút cho dễ bấm */
+    .navbar a i {
+        font-size: 1.3rem; 
+        margin: 0; /* Bỏ căn lề vì không còn chữ */
+    }
+
+    /* Thu hẹp khoảng cách giữa các mục menu */
+    .navbar ul {
+        gap: 20px; 
+    }
+
+    /* Căn giữa icon trong ô bấm */
+    .navbar a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px; /* Tạo vùng bấm hình vuông */
+        height: 40px;
+        border-radius: 50%; /* Bo tròn nút khi hover */
+        transition: 0.3s;
+    }
+
+    .navbar a:hover {
+        background-color: #f0f0f0; /* Hiệu ứng nền xám khi di chuột vào icon */
+    }
+
+
+    /* 2. XỬ LÝ NÚT ĐĂNG NHẬP: Tự co giãn */
+    .btn-login {
+        /* Giảm padding (khoảng cách viền) */
+        padding: 8px 15px !important; 
+        
+        /* Giảm cỡ chữ */
+        font-size: 0.85rem !important;
+        
+        /* Đảm bảo chữ không bị xuống dòng */
+        white-space: nowrap; 
+    }
+}
+
+/* Khi màn hình siêu nhỏ (Điện thoại dọc - dưới 480px) */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 10px 15px; /* Thu nhỏ lề Header */
+    }
+
+    .logo h1 {
+        font-size: 1.2rem; /* Thu nhỏ tên Logo */
+    }
+
+    .navbar ul {
+        gap: 10px; /* Các icon xích lại gần nhau hơn nữa */
+    }
+    
+    /* Nút đăng nhập bé xíu lại hoặc chỉ hiện icon */
+    .btn-login {
+        padding: 5px 10px !important;
+        font-size: 0.75rem !important;
+    }
+}
